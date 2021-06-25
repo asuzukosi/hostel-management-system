@@ -9,6 +9,7 @@ from django.dispatch import receiver
 # Create your models here.
 class School(models.Model):
     name = models.CharField(max_length=200)
+    logo = models.ImageField(upload_to="app_school/school/",blank=True, null=True)
     slug = models.CharField(max_length=200, blank=True, null=True)
     website = models.URLField(blank=True, null=True)
     email = models.EmailField()
@@ -22,6 +23,7 @@ class School(models.Model):
 ADMIN_AUTH_LEVELS = [['super', 'super'], ['regular', 'regular'], ['minor', 'minor']]
 class SchoolAdmin(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    profile_image = models.ImageField(upload_to="app_school/school_admin/", blank=True, null=True)
     school = models.ForeignKey(School, on_delete=models.CASCADE)
     authorization_level = models.CharField(max_length=10, choices=ADMIN_AUTH_LEVELS)
     created_at = models.DateTimeField(auto_now_add=True)
