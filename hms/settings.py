@@ -38,16 +38,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     #third party apps
     'rest_framework',
+    'rest_framework.authtoken',
+    'allauth', 
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth',
+    'drf_yasg',
+    
 
     #local
     'app_hostel',
     'app_accounts',
     'app_school',
     'app_dashboard',
-    'app_student'
+    'app_student',
 
 ]
 
@@ -139,3 +147,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# DRF settings/configs
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication', # new
+], 
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+
+
+SITE_ID = 1
